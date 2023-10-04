@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { collection,     query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { db } from './db/datos';
 import Call from './Call';
 import CallEnd from './CallEnd';
+import { ContextTurnero } from "./ContextTurnero";
 
 
 function Vista() {
     const [data, setData] = useState([]);
     const [dataLlamado, setDataLlamado] = useState([]);
-
+    const {reproducirSonido}= useContext(ContextTurnero);
+    const [sonido,setSonido] = useState(null)
     useEffect(() => {
         // Configura un listener para escuchar cambios en la colección "llamados"
         const llamadoCollection = collection(db, 'llamados');
@@ -41,6 +43,7 @@ function Vista() {
             return turno;
         });
         setDataLlamado(aux);
+        setSonido(reproducirSonido())
         });
 
         return () => {
