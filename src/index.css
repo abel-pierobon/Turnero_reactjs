@@ -4,4 +4,23 @@
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+.logo{
+    width: 150px;
+}
 
+.call-end-destacado {
+    background-color: rgb(27, 164, 168); /* Cambia el color de fondo al amarillo */
+    font-size: 1.2rem; /* Cambia el tamaño del texto */
+    font-weight: bold; /* Hace que el texto sea más grueso */
+    border: 2px solid rgb(10, 10, 10); /* Agrega un borde rojo */
+    animation: resaltar 1s infinite alternate; /* Agrega una animación */
+}
+
+@keyframes resaltar {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05); /* Escala ligeramente el elemento */
+    }
+}

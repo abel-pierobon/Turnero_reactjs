@@ -1,10 +1,10 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // Asegúrate de importar los módulos de Firestore adecuadamente
 import { db } from "./db/datos";
-function VerDisponibles({ turnos }) {
+import { ContextTurnero } from "./ContextTurnero";
+function VerDisponibles({ turnos}) {
     const [selectedPuesto, setSelectedPuesto] = useState("");
-    
+    const {reproducirSonido}= useContext(ContextTurnero)
 
     const llamar = () => {
         // Luego, agrega datos a Firestore
@@ -15,7 +15,7 @@ function VerDisponibles({ turnos }) {
         puesto: selectedPuesto,
         timestamp: serverTimestamp(),
         };
-
+        reproducirSonido()
         addDoc(llamadoCollection, llamado)
         .then((resultado) => {
             console.log(resultado);

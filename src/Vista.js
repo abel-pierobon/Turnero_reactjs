@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { collection, getDocs, query, orderBy, onSnapshot, limit } from 'firebase/firestore';
+import { collection,     query, orderBy, onSnapshot, limit } from 'firebase/firestore';
 import { db } from './db/datos';
 import Call from './Call';
 import CallEnd from './CallEnd';
+
 
 function Vista() {
     const [data, setData] = useState([]);
@@ -49,20 +50,22 @@ function Vista() {
     }, []);
 
     return (
-        <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
-            <div>
-                {dataLlamado.length === 0 ? (
-                    <div className="flex justify-center">
+        <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2">
+        <div className='w-3/5'>
+            {dataLlamado.length === 0 ? (
+                <div className="flex justify-center">
                     <p className="font-bold texto-aparecer-desaparecer">CARGANDO...</p>
-                    </div>
-                ) : (
-                    dataLlamado.map((item2, i) => {
+                </div>
+            ) : (
+                dataLlamado.map((item2, i) => {
+                    const esUltimo = item2.id === data[0]?.id; // Compara con el primer turno de "data"
                     return (
-                        <CallEnd key={i} turno={item2}/>);
-                    })
-                )}
-            </div>
-            <div>
+                        <CallEnd key={i} turno={item2} esUltimo={esUltimo} />
+                    );
+                })
+            )}
+        </div>
+            <div className='w-2/3'>
                 {data.length === 0 ? (
                     <div className="flex justify-center">
                     <p className="font-bold texto-aparecer-desaparecer">CARGANDO...</p>
