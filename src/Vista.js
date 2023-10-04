@@ -10,7 +10,6 @@ function Vista() {
     const [data, setData] = useState([]);
     const [dataLlamado, setDataLlamado] = useState([]);
     const {reproducirSonido}= useContext(ContextTurnero);
-    const [sonido,setSonido] = useState(null)
     useEffect(() => {
         // Configura un listener para escuchar cambios en la colección "llamados"
         const llamadoCollection = collection(db, 'llamados');
@@ -43,7 +42,7 @@ function Vista() {
             return turno;
         });
         setDataLlamado(aux);
-        setSonido(reproducirSonido())
+        reproducirSonido()
         });
 
         return () => {
