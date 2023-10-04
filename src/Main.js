@@ -7,7 +7,7 @@ import Vista from './Vista';
 
 function Main() {
     return (
-            <main className='p-2 grow mx-10 bg-slate-200'>
+            <main className='p-2 grow mx-10'>
             <Routes>
                 <Route path="/" element={<Vista/>} />
                 <Route path="/carga" element={<Carga/>}/>

@@ -43,7 +43,7 @@ function VerDisponibles({ turnos }) {
             <option value="Puesto 1">Puesto 1</option>
             <option value="Puesto 2">Puesto 2</option>
             <option value="Puesto 3">Puesto 3</option>
-            <option value="ConsultorioMedico">Consultorio Médico</option>
+            <option value="Consultorio Médico">Consultorio Médico</option>
         </select>
         <button className="rounded-md border border-radius border-black bg-green-500 p-1" onClick={llamar}>
             llamar
