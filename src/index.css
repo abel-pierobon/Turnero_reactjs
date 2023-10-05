@@ -4,8 +4,23 @@
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
+html , body , #root {
+    height: 100%;
+}
+#root{
+    display: flex;
+    flex-direction: column;
+}
+.color{
+    background-color: #004f9f; 
+    background-color: #662483;
+    background-color: #ce1537;
+    background-color: #f07e07;
+    background-color: #f4c000;
+    background-color: #3aaa35;
+}
 .logo{
-    width: 150px;
+    width: 100px;
 }
 
 .call-end-destacado {
@@ -24,3 +39,27 @@
         transform: scale(1.05); /* Escala ligeramente el elemento */
     }
 }
+.fondoMain{
+    background-image: url('https://pbs.twimg.com/profile_images/1430544128669069313/NFi5VUxD_400x400.jpg');
+    
+}
+.nav{
+    background: radial-gradient(circle,#f07e07,#f4c000,#662483);
+}
+.active{
+    color: aliceblue;
+}
+.ultimoLlamado{
+    background-color: #f4c000;
+    margin-top: 5px;
+    background: radial-gradient(circle,#f4c000,#f07e07);
+}
+.llamados{
+    background-color: #3aaa35;
+    opacity: 0.98;
+    margin-top: 5px;
+}
+/* .formulario{
+    background-color: #3aaa35;
+    opacity: 0.9;
+} */

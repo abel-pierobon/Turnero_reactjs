@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { collection,     query, orderBy, onSnapshot, limit } from 'firebase/firestore';
+import { collection,     query, orderBy, onSnapshot, limit,deleteDoc,getDocs } from 'firebase/firestore';
 import { db } from './db/datos';
 import Call from './Call';
 import CallEnd from './CallEnd';
@@ -51,12 +51,26 @@ function Vista() {
         };
     }, []);
 
+    const eliminarTodosLosLlamados = async () => {
+        const llamadosCollection = collection(db, 'llamados');
+        const llamadosQuery = query(llamadosCollection);
+        const llamadosSnapshot = await getDocs(llamadosQuery);
+
+        llamadosSnapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+        });
+
+        // Luego, actualiza el estado o realiza cualquier otra acción que desees.
+        // Por ejemplo, puedes limpiar el estado de los llamados.
+        setData([]);
+    };
+
     return (
-        <section className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-2">
-        <div className='w-3/5'>
+        <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-2">
+        <div className=''>
             {dataLlamado.length === 0 ? (
                 <div className="flex justify-center">
-                    <p className="font-bold texto-aparecer-desaparecer">CARGANDO...</p>
+                    <p className="font-bold texto-aparecer-desaparecer">No se ha llamado ningún turno</p>
                 </div>
             ) : (
                 dataLlamado.map((item2, i) => {
@@ -67,16 +81,26 @@ function Vista() {
                 })
             )}
         </div>
-            <div className='w-2/3'>
+        <div>
+            {data.length === 0 ? (
+                <div className="flex justify-center">
+                    <p className="font-bold texto-aparecer-desaparecer">Aguarde y será atendido</p>
+                </div>
+            ) : data.length === 1 ? (
+                <p></p>
+            ) : (
+                data.map((item, i) => {
+                    return <Call key={i} turno={item} />;
+                })
+            )}
+        </div>
+            <div className=''>
                 {data.length === 0 ? (
                     <div className="flex justify-center">
-                    <p className="font-bold texto-aparecer-desaparecer">CARGANDO...</p>
+                    <p></p>
                     </div>
                 ) : (
-                    data.map((item, i) => {
-                    return (
-                        <Call key={i} turno={item}/>);
-                    })
+                <button onClick={eliminarTodosLosLlamados} className="rounded-md border border-radius border-red-500 bg-red-500 text-white p-1 mt-2" >Limpiar Turnero</button>
                 )}
             </div>
         </section>

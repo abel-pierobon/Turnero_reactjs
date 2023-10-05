@@ -9,7 +9,7 @@ function Carga() {
         apellido: '',
         tramite: '',
     });
-
+    
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setPersona({
@@ -46,15 +46,15 @@ function Carga() {
     };
 
     return (
-        <div>
+        <div className='formulario' >
             <h2 className='flex justify-center text-2xl font-black  '>Completa el formulario para cargar un turno</h2>
-            <form className="max-w-md mx-auto my-8 font-black">
+            <form className="max-w-md mx-auto my-8 font-black ">
                 <div className="mb-4">
                     <label className="block text-black-900 text-sm font-black mb-2">
                         Nombre
                     </label>
                     <input
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-black-900 leading-tight focus:outline-none focus:shadow-outline"
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-black-500 leading-tight focus:outline-none focus:shadow-outline"
                         type="text"
                         placeholder="Ingresa el nombre"
                         name="nombre" 
@@ -80,12 +80,11 @@ function Carga() {
                 </div>
 
                 <div className="mb-4">
-                
-                <select
+                    <select
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-black-900 leading-tight focus:outline-none focus:shadow-outline"
                         name="tramite"
                         value={persona.tramite}
-                        onChange={handleInputChange} // Cambiar a handleInputChange
+                        onChange={handleInputChange}
                     >
                         <option value="otros">otros</option>
                         <option value="Renovacion">Renovación</option>

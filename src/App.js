@@ -4,6 +4,7 @@ import Main from './Main';
 import NavBar from './NavBar';
 import { BrowserRouter } from 'react-router-dom';
 import { ContextTurneroProvider } from './ContextTurnero';
+import Footer from './Footer';
 
 
 
@@ -14,6 +15,7 @@ function App() {
         <NavBar/>
         <Toaster position="bottom-right" expand={false} autoClose={200} duration={1500} closeOnClick= {true} richColors/>
         <Main  />
+        <Footer/>
       </ContextTurneroProvider>
     </BrowserRouter>
   );

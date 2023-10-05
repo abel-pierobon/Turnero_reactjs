@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore"; // Asegúrate de importar los módulos de Firestore adecuadamente
+import { useState } from "react";
+import { collection, addDoc, serverTimestamp, doc, deleteDoc } from 'firebase/firestore';
 import { db } from "./db/datos";
 
-function VerDisponibles({ turnos}) {
+function VerDisponibles({ turnos }) {
     const [selectedPuesto, setSelectedPuesto] = useState("");
+
     const llamar = () => {
         // Luego, agrega datos a Firestore
         const llamadoCollection = collection(db, "llamados");
@@ -13,6 +14,7 @@ function VerDisponibles({ turnos}) {
         puesto: selectedPuesto,
         timestamp: serverTimestamp(),
         };
+
         addDoc(llamadoCollection, llamado)
         .then((resultado) => {
             console.log(resultado);
@@ -22,13 +24,25 @@ function VerDisponibles({ turnos}) {
         });
     };
 
+    const eliminarTurno = async () => {
+        try {
+        const turnoDocRef = doc(db, "turnos", turnos.id);
+        await deleteDoc(turnoDocRef);
+        console.log("Turno eliminado correctamente.");
+        // Recarga la página después de eliminar
+        window.location.reload();
+        } catch (error) {
+        console.error("Error al eliminar el turno:", error);
+        }
+    };
+
     const handlePuestoChange = (event) => {
         setSelectedPuesto(event.target.value);
     };
 
     return (
         <div key={turnos.id} className="grid  md:grid-cols-1 border border-black card shadow-md p-4 rounded-md bg-gray-200">
-        <div className="flex justify-center ">
+        <div className="flex justify-center">
             <h2 className=" text-start font-black uppercase m-3">
             {turnos.datos.apellido}
             </h2>
@@ -42,11 +56,14 @@ function VerDisponibles({ turnos}) {
             <option value="Puesto 3">Puesto 3</option>
             <option value="Consultorio Médico">Consultorio Médico</option>
         </select>
-        <button className="rounded-md border border-radius border-black bg-green-500 p-1" onClick={llamar}>
-            llamar
+        <button className="rounded-md border border-radius border-black bg-green-500 p-1 mt-2" onClick={llamar}>
+            Llamar
+        </button>
+        <button className="rounded-md border border-radius border-red-500 bg-red-500 text-white p-1 mt-2" onClick={eliminarTurno}>
+            Trámite finalizado
         </button>
         </div>
     );
-    }
+}
 
 export default VerDisponibles;

@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom"
 
 function NavBar() {
     return (
-        <div className="flex justify-between bg-blue-100 font-bold">
+        <div className="flex justify-around font-bold nav">
             <NavLink  to={'/'}>
             <img
                 className="logo"
-                src={`https://boletinmunicipal.cordoba.gob.ar/assets/img/logo-muni.png`}
+                src={"https://cordoba.gob.ar/wp-content/uploads/2022/08/cba-capital.svg"}
                 alt="logo municipalidad"
             />
             </NavLink>

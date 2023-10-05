@@ -37,7 +37,7 @@ function Disponibles() {
         <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
                 {data.length === 0 ? (
                     <div className='flex justify-center'>
-                        <p className="font-bold texto-aparecer-desaparecer"> CARGANDO...</p>
+                        <p className="font-bold texto-aparecer-desaparecer"> No hay turnos disponibles</p>
                     </div>
                 ) : (
                     data.map((item, i) => {
