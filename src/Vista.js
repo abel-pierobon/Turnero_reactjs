@@ -4,7 +4,8 @@ import { db } from './db/datos';
 import Call from './Call';
 import CallEnd from './CallEnd';
 import { ContextTurnero } from "./ContextTurnero";
-
+import requisitos from './requisitos.jpeg'
+import Requisitos from './Requisitos';
 
 function Vista() {
     const [data, setData] = useState([]);
@@ -81,18 +82,23 @@ function Vista() {
                 })
             )}
         </div>
-        <div>
-            {data.length === 0 ? (
-                <div className="flex justify-center">
-                    <p className="font-bold texto-aparecer-desaparecer">Aguarde y será atendido</p>
-                </div>
-            ) : data.length === 1 ? (
-                <p></p>
-            ) : (
-                data.map((item, i) => {
-                    return <Call key={i} turno={item} />;
-                })
-            )}
+        <div className='flex justify-center'>
+            <div>
+                <Requisitos />
+            </div>
+            <div>
+                {data.length === 0 ? (
+                    <div className="flex justify-center">
+                        <p className="font-bold texto-aparecer-desaparecer"></p>
+                    </div>
+                ) : data.length === 1 ? (
+                    <p></p>
+                ) : (
+                    data.map((item, i) => {
+                        return <Call key={i} turno={item} />;
+                    })
+                )}
+            </div>
         </div>
             <div className=''>
                 {data.length === 0 ? (

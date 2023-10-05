@@ -59,7 +59,6 @@ html , body , #root {
     opacity: 0.98;
     margin-top: 5px;
 }
-/* .formulario{
-    background-color: #3aaa35;
-    opacity: 0.9;
-} */
+.requisitos{
+    background-color: #59a0e7;
+}
