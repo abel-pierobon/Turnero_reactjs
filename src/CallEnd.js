@@ -6,11 +6,11 @@ function CallEnd({ turno, esUltimo }) {
     return (
         <div key={turno.id} className={`grid md:grid-cols-1 border border-black card shadow-md p-4 rounded-md ${clases} ultimoLlamado`}>
             <div className="flex justify-center">
-                <h2 className="text-start font-black uppercase m-3 text-sm text-4xl">
+                <h2 className="text-start font-black uppercase m-3 text-sm text-lg text-4xl">
                     {turno.apellido}
                 </h2>
-                <h2 className="text-start font-black uppercase m-3 text-sm text-4xl">{turno.nombre}</h2>
-                <h2 className="text-start font-black uppercase m-3 text-sm text-4xl">{turno.puesto}</h2>
+                <h2 className="text-start font-black uppercase m-3 text-sm text-lg text-4xl">{turno.nombre}</h2>
+                <h2 className="text-start font-black uppercase m-3 text-sm text-lg text-4xl">{turno.puesto}</h2>
             </div>
         </div>
     );

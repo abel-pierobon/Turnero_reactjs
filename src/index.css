@@ -62,3 +62,9 @@ html , body , #root {
 .requisitos{
     background-color: #59a0e7;
 }
+
+@media screen and (max-width: 768px) {
+    .requisitos{
+        display: none;
+    }
+}
