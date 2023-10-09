@@ -63,10 +63,9 @@ function Disponibles() {
                             <p className="font-bold texto-aparecer-desaparecer"></p>
                         </div>
                     ) : (
-                        data.map((item, i) => {
-                            return <EliminarTurnos eliminar={eliminarTodosLosTurnos}/>
-                        })
-                    )}                                  
+                            <EliminarTurnos eliminar={eliminarTodosLosTurnos}/>
+                        )
+                    }                                  
             </section>
             
         </div>
