@@ -4,7 +4,6 @@ import { db } from './db/datos';
 import Call from './Call';
 import CallEnd from './CallEnd';
 import { ContextTurnero } from "./ContextTurnero";
-import requisitos from './requisitos.jpeg'
 import Requisitos from './Requisitos';
 
 function Vista() {
@@ -44,10 +43,23 @@ function Vista() {
         });
         setDataLlamado(aux);
         reproducirSonido()
-        });
+        if (aux.length > 0) {
+            const { nombre, apellido, puesto } = aux[0];
+            const voz = new SpeechSynthesisUtterance(`${nombre} ${apellido}, ${puesto}`);
+            voz.lang = 'es-LA'; 
+            voz.volume = 1; 
+            voz.rate = 1; 
+            voz.pitch = 1; 
+            setTimeout(() => {
+                window.speechSynthesis.speak(voz);
+            }, 2000);
 
+            setTimeout(() => {
+                window.speechSynthesis.speak(voz);
+            }, 10000);
+        }
+        });
         return () => {
-        // Cuando el componente se desmonta, deten el listener
         unsubscribe();
         };
     }, []);
@@ -59,7 +71,7 @@ function Vista() {
 
         llamadosSnapshot.forEach(async (doc) => {
             await deleteDoc(doc.ref);
-        });
+    });
 
         // Luego, actualiza el estado o realiza cualquier otra acción que desees.
         // Por ejemplo, puedes limpiar el estado de los llamados.

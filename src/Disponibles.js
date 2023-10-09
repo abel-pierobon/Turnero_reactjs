@@ -1,9 +1,10 @@
 import { db } from "./db/datos";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, deleteDoc, query } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { toast } from "sonner";
 import VerDisponibles from "./VerDisponibles";
+import EliminarTurnos from "./EliminarTurnos";
 
 
 function Disponibles() {
@@ -32,19 +33,43 @@ function Disponibles() {
             },
         });
     }, [id]);
-    console.log(data)
+
+    const eliminarTodosLosTurnos = async () => {
+        const llamadosCollection = collection(db, 'turnos');
+        const llamadosQuery = query(llamadosCollection);
+        const llamadosSnapshot = await getDocs(llamadosQuery);
+
+        llamadosSnapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+            window.location.reload();
+    });
+    }
     return (
-        <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
-                {data.length === 0 ? (
-                    <div className='flex justify-center'>
-                        <p className="font-bold texto-aparecer-desaparecer"> No hay turnos disponibles</p>
-                    </div>
-                ) : (
-                    data.map((item, i) => {
-                        return <VerDisponibles key={i} turnos={item} />;
-                    })
-                )}                   
+        <div className="grid grid-cols-1">
+            <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                    {data.length === 0 ? (
+                        <div className='flex justify-center'>
+                            <p className="font-bold texto-aparecer-desaparecer"> No hay turnos disponibles</p>
+                        </div>
+                    ) : (
+                        data.map((item, i) => {
+                            return <VerDisponibles key={i} turnos={item}/>;
+                        })
+                    )}                                  
             </section>
+            <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                    {data.length === 0 ? (
+                        <div className='flex justify-center'>
+                            <p className="font-bold texto-aparecer-desaparecer"></p>
+                        </div>
+                    ) : (
+                        data.map((item, i) => {
+                            return <EliminarTurnos eliminar={eliminarTodosLosTurnos}/>
+                        })
+                    )}                                  
+            </section>
+            
+        </div>
     )
 }
 export default Disponibles

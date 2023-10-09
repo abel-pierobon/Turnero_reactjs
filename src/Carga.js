@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from "./db/datos";
+import { toast } from "sonner";
 
 
 function Carga() {
@@ -28,8 +29,9 @@ function Carga() {
                 tramite: persona.tramite,
             },
             fecha: serverTimestamp(),
+            
         };
-
+        toast.success('Turno cargado correctamente')
         const nuevoTurno = addDoc(agregarTurno, turno);
         nuevoTurno
             .then((resultado) => {
@@ -86,9 +88,9 @@ function Carga() {
                         value={persona.tramite}
                         onChange={handleInputChange}
                     >
-                        <option value="otros">otros</option>
+                        <option value="sin trámite asignado">Seleccione un trámite</option>
                         <option value="Renovacion">Renovación</option>
-                        <option value="Historial">Historial</option>
+                        <option value="Antecedentes">Antecedentes</option>
                     </select>
                 </div>
 

@@ -24,11 +24,11 @@ html , body , #root {
 }
 
 .call-end-destacado {
-    background-color: rgb(27, 164, 168); /* Cambia el color de fondo al amarillo */
-    font-size: 1.2rem; /* Cambia el tamaño del texto */
-    font-weight: bold; /* Hace que el texto sea más grueso */
-    border: 2px solid rgb(10, 10, 10); /* Agrega un borde rojo */
-    animation: resaltar 1s infinite alternate; /* Agrega una animación */
+    background-color: rgb(27, 164, 168); 
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    border: 2px solid rgb(10, 10, 10);
+    animation: resaltar 1s infinite alternate; 
 }
 
 @keyframes resaltar {
@@ -39,10 +39,9 @@ html , body , #root {
         transform: scale(1.05); /* Escala ligeramente el elemento */
     }
 }
-.fondoMain{
-    background-image: url('https://pbs.twimg.com/profile_images/1430544128669069313/NFi5VUxD_400x400.jpg');
-    
-}
+/* .fondoMain{
+    background-image: url('https://pbs.twimg.com/profile_images/1430544128669069313/NFi5VUxD_400x400.jpg');  
+} */
 .nav{
     background: radial-gradient(circle,#f07e07,#f4c000,#662483);
 }
