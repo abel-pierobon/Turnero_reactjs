@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import {getFirestore} from "firebase/firestore"
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAhP8X5W9kNeCkMKtXffRWZPNzPHTBFyQ8",
-    authDomain: "turnero-277b9.firebaseapp.com",
-    projectId: "turnero-277b9",
-    storageBucket: "turnero-277b9.appspot.com",
-    messagingSenderId: "377748608261",
-    appId: "1:377748608261:web:a6f183e5d02660dbd4936c",
-    measurementId: "G-VF94XVWP46"
+   apiKey: "AIzaSyBbB79ZJreq9Su4_BS4TOoh5gF8Y70wwi8",
+  authDomain: "turneronuevo.firebaseapp.com",
+  projectId: "turneronuevo",
+  storageBucket: "turneronuevo.appspot.com",
+  messagingSenderId: "107777531381",
+  appId: "1:107777531381:web:2c7f9f99db837cb4d8d4bc",
+  measurementId: "G-0W8N7V102W"
 };
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
