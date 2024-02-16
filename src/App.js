@@ -1,14 +1,17 @@
 
+
+import { BrowserRouter } from 'react-router-dom';
+import { ContextTurneroProvider } from './ContextTurnero';
+
 import { Toaster } from 'sonner';
 import Main from './Main';
 import NavBar from './NavBar';
-import { BrowserRouter } from 'react-router-dom';
-import { ContextTurneroProvider } from './ContextTurnero';
 import Footer from './Footer';
 
 
 
 function App() {
+  
   return (
     <BrowserRouter>
       <ContextTurneroProvider>

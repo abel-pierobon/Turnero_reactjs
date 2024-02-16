@@ -8,12 +8,19 @@ function ContextTurneroProvider(props) {
     const updateTurnoActual = (data) => {
         setTurnoActual(data);
     };
+    const [usuario,setUsuario]=useState('')
+
     const reproducirSonido = () => {
         const audio = new Audio(Timbre);
         audio.play();
     };
+    
+    const updateUsuario = (user) => {
+        setUsuario(user);
+        console.log(usuario)
+    };
     return (
-        <Provider value={{turnoActual, updateTurnoActual, reproducirSonido}}>
+        <Provider value={{turnoActual, updateTurnoActual, reproducirSonido, updateUsuario,usuario}}>
             {props.children}
         </Provider>
     )

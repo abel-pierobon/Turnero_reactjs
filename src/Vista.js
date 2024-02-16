@@ -45,7 +45,7 @@ function Vista() {
         reproducirSonido()
         if (aux.length > 0) {
             const { nombre, apellido, puesto } = aux[0];
-            const voz = new SpeechSynthesisUtterance(`${nombre} ${apellido}, ${puesto}`);
+            const voz = new SpeechSynthesisUtterance(`Atencion, ${nombre} ${apellido},dirigirse a , ${puesto}`);
             voz.lang = 'es-LA'; 
             voz.volume = 1; 
             voz.rate = 1; 
@@ -62,7 +62,7 @@ function Vista() {
         return () => {
         unsubscribe();
         };
-    }, []);
+    }, [reproducirSonido]);
 
     const eliminarTodosLosLlamados = async () => {
         const llamadosCollection = collection(db, 'llamados');
@@ -72,9 +72,6 @@ function Vista() {
         llamadosSnapshot.forEach(async (doc) => {
             await deleteDoc(doc.ref);
     });
-
-        // Luego, actualiza el estado o realiza cualquier otra acción que desees.
-        // Por ejemplo, puedes limpiar el estado de los llamados.
         setData([]);
     };
 
@@ -94,11 +91,11 @@ function Vista() {
                 })
             )}
         </div>
-        <div className='flex justify-center'>
-            <div>
+        <div className='flex justify-center '>
+            <div className='w-4/6'>
                 <Requisitos />
             </div>
-            <div>
+            <div className=' w-2/6'>
                 {data.length === 0 ? (
                     <div className="flex justify-center">
                         <p className="font-bold texto-aparecer-desaparecer"></p>

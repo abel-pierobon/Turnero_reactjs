@@ -23,10 +23,12 @@ function Disponibles() {
                 const aux = resultado.docs.map((doc) => {
                     const turnos = doc.data()
                     turnos.id = doc.id
+                    console.log(turnos)
                     return turnos
                 })
                 setData(aux)
                 return 'Turnos cargados correctamente';
+                
             },
             error: (error) => {
                 return "error en carga de Turnos"
