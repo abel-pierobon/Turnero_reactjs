@@ -92,10 +92,10 @@ function Vista() {
             )}
         </div>
         <div className='flex justify-center '>
-            <div className='w-4/6'>
+            <div className=''>
                 <Requisitos />
             </div>
-            <div className=' w-2/6'>
+            <div className=' '>
                 {data.length === 0 ? (
                     <div className="flex justify-center">
                         <p className="font-bold texto-aparecer-desaparecer"></p>
