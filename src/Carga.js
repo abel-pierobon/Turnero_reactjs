@@ -91,6 +91,8 @@ function Carga() {
                         <option value="sin trámite asignado">Seleccione un trámite</option>
                         <option value="Renovacion">Renovación</option>
                         <option value="Antecedentes">Antecedentes</option>
+                        <option value="Duplicado">Duplicado</option>
+
                     </select>
                 </div>
 

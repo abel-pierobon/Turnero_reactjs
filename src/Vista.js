@@ -6,14 +6,17 @@ import CallEnd from './CallEnd';
 import { ContextTurnero } from "./ContextTurnero";
 import Requisitos from './Requisitos';
 
+
 function Vista() {
     const [data, setData] = useState([]);
     const [dataLlamado, setDataLlamado] = useState([]);
     const {reproducirSonido}= useContext(ContextTurnero);
+    const {usuario}= useContext(ContextTurnero);
+
     useEffect(() => {
         // Configura un listener para escuchar cambios en la colección "llamados"
         const llamadoCollection = collection(db, 'llamados');
-        const q = query(llamadoCollection, orderBy('timestamp', 'desc'),limit(6));
+        const q = query(llamadoCollection, orderBy('timestamp', 'desc'),limit(8));
 
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const aux = querySnapshot.docs.map((doc) => {
@@ -92,10 +95,10 @@ function Vista() {
             )}
         </div>
         <div className='flex justify-center '>
-            <div className=''>
+            <div className='w-1/1 md:w-2/3'>
                 <Requisitos />
             </div>
-            <div className=' '>
+            <div className=' w-1/1 md:w-1/3 '>
                 {data.length === 0 ? (
                     <div className="flex justify-center">
                         <p className="font-bold texto-aparecer-desaparecer"></p>
@@ -109,14 +112,19 @@ function Vista() {
                 )}
             </div>
         </div>
-            <div className=''>
-                {data.length === 0 ? (
-                    <div className="flex justify-center">
+            <div>
+                {usuario ?
+                    <div className=''>
+                        {data.length === 0 ? (
+                            <div className="flex justify-center">
+                            <p></p>
+                            </div>
+                        ) : (
+                        <button onClick={eliminarTodosLosLlamados} className="rounded-md border border-radius border-red-500 bg-red-500 text-white p-1 mt-2" >Limpiar Turnero</button>
+                        )}
+                    </div> :
                     <p></p>
-                    </div>
-                ) : (
-                <button onClick={eliminarTodosLosLlamados} className="rounded-md border border-radius border-red-500 bg-red-500 text-white p-1 mt-2" >Limpiar Turnero</button>
-                )}
+                }
             </div>
         </section>
     );

@@ -45,8 +45,12 @@ html , body , #root {
     }
 }
 /* .fondoMain{
-    background-image: url('https://pbs.twimg.com/profile_images/1430544128669069313/NFi5VUxD_400x400.jpg');  
-} */
+    background-image: url('../public/fondoLogo.png');  
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position: center;
+}  */
 .nav{
     /* background: radial-gradient(circle,#f07e07,#f4c000,#662483); */
     background-color: #467be6;
@@ -67,6 +71,7 @@ html , body , #root {
 .requisitos{
     background-color: #59a0e7;
 }
+
 
 @media screen and (max-width: 768px) {
     .requisitos{

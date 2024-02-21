@@ -1,20 +1,7 @@
-import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState,useContext } from 'react';
 import { ContextTurnero } from "./ContextTurnero";
 import { useNavigate } from 'react-router-dom';
-// Configura tu aplicación con la configuración de Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAcD6jRjNRc76QqtaVt7X2xpdcDxZMmuzs",
-  authDomain: "turnero-dc6a0.firebaseapp.com",
-  databaseURL: "https://turnero-dc6a0-default-rtdb.firebaseio.com",
-  projectId: "turnero-dc6a0",
-  storageBucket: "turnero-dc6a0.appspot.com",
-  messagingSenderId: "349758838710",
-  appId: "1:349758838710:web:625cf07368df932d0c5317"
-};
-
-const app = initializeApp(firebaseConfig);
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -24,12 +11,15 @@ function Login() {
   const [error, setError]=useState('')
   const handleLogin = async () => {
     try {
-      const auth = getAuth(app);
+      const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log('Usuario autenticado con éxito', user);
       updateUsuario({ uid: user.uid, displayName: user.displayName, email: user.email });
       navigate('/');
+      localStorage.setItem('userId', user.uid);
+      localStorage.setItem('userDisplayName', user.displayName);
+      localStorage.setItem('userEmail', user.email);
       
     } catch (error) {
       console.error('Error al autenticar el usuario', error);

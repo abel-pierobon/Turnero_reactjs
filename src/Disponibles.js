@@ -36,7 +36,7 @@ function Disponibles() {
         });
     }, [id]);
 
-    const eliminarTodosLosTurnos = async () => {
+    const eliminarTodosLosTurnos = async (e) => {
         const llamadosCollection = collection(db, 'turnos');
         const llamadosQuery = query(llamadosCollection);
         const llamadosSnapshot = await getDocs(llamadosQuery);
