@@ -71,10 +71,30 @@ html , body , #root {
 .requisitos{
     background-color: #59a0e7;
 }
-
+.menu{
+    display: none;
+}
 
 @media screen and (max-width: 768px) {
     .requisitos{
         display: none;
+    }
+    .burger{
+        display: flex;
+        flex-direction: column;
+    }
+    .menu{
+        display: flex;
+        justify-content: end;
+    }
+    .cerrado{
+        display: none;
+        transform: translateY(-100%);
+    }
+    .abierto{
+        display: flex;
+        flex-direction: column;
+        align-content: end;
+        transform: translateY(0);
     }
 }
