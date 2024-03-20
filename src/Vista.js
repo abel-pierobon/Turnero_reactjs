@@ -120,7 +120,7 @@ function Vista() {
                             <p></p>
                             </div>
                         ) : (
-                        <button onClick={eliminarTodosLosLlamados} className="rounded-md border border-radius border-red-500 bg-red-500 text-white p-1 mt-2" >Limpiar Turnero</button>
+                        <button onClick={eliminarTodosLosLlamados} className="rounded-md border border-radius border-black-500 bg-red-500 text-white p-1 mt-2" >Limpiar Turnero</button>
                         )}
                     </div> :
                     <p></p>
