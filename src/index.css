@@ -52,7 +52,6 @@ html , body , #root {
     background-position: center;
 }  */
 .nav{
-    /* background: radial-gradient(circle,#f07e07,#f4c000,#662483); */
     background-color: #467be6;
 }
 .active{
@@ -85,7 +84,7 @@ html , body , #root {
     }
     .menu{
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
     }
     .cerrado{
         display: none;
@@ -94,7 +93,7 @@ html , body , #root {
     .abierto{
         display: flex;
         flex-direction: column;
-        align-content: end;
+        align-content: flex-end;
         transform: translateY(0);
     }
 }

@@ -14,7 +14,6 @@ function Vista() {
     const {usuario}= useContext(ContextTurnero);
 
     useEffect(() => {
-        // Configura un listener para escuchar cambios en la colección "llamados"
         const llamadoCollection = collection(db, 'llamados');
         const q = query(llamadoCollection, orderBy('timestamp', 'desc'),limit(8));
 
@@ -28,13 +27,11 @@ function Vista() {
         });
 
         return () => {
-        // Cuando el componente se desmonta, deten el listener
         unsubscribe();
         };
     }, []);
 
     useEffect(() => {
-        // Configura un listener para escuchar cambios en la colección "llamados"
         const llamadoCollection = collection(db, 'llamados');
         const qu = query(llamadoCollection, orderBy('timestamp', 'desc'),limit(1));
 

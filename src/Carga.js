@@ -3,12 +3,12 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from "./db/datos";
 import { toast } from "sonner";
 
-
 function Carga() {
     const [persona, setPersona] = useState({
         nombre: '',
         apellido: '',
         tramite: '',
+        horaTurno: '',
     });
     
     const handleInputChange = (e) => {
@@ -27,19 +27,19 @@ function Carga() {
                 nombre: persona.nombre,
                 apellido: persona.apellido,
                 tramite: persona.tramite,
+                horaTurno: persona.horaTurno,
             },
             fecha: serverTimestamp(),
-            
         };
-        toast.success('Turno cargado correctamente')
+        toast.success('Turno cargado correctamente');
         const nuevoTurno = addDoc(agregarTurno, turno);
         nuevoTurno
             .then((resultado) => {
-                console.log(resultado);
                 setPersona({
                     nombre: '',
                     apellido: '',
-                    tramite: 'otros'
+                    tramite: 'otros',
+                    horaTurno: '',
                 });
             })
             .catch((error) => {
@@ -48,8 +48,8 @@ function Carga() {
     };
 
     return (
-        <div className='formulario' >
-            <h2 className='flex justify-center text-2xl font-black  '>Completa el formulario para cargar un turno</h2>
+        <div className='formulario'>
+            <h2 className='flex justify-center text-2xl font-black'>Completa el formulario para cargar un turno</h2>
             <form className="max-w-md mx-auto my-8 font-black ">
                 <div className="mb-4">
                     <label className="block text-black-900 text-sm font-black mb-2">
@@ -80,7 +80,20 @@ function Carga() {
                         required
                     />
                 </div>
-
+                <div className="mb-4">
+                    <label className="block text-black-900 text-sm font-black  mb-2">
+                        Hora de turno
+                    </label>
+                    <input
+                        className="shadow appearance-none border rounded w-full py-2 px-3 text-black-900 leading-tight focus:outline-none focus:shadow-outline"
+                        type="time"
+                        placeholder="Ingresa la hora del turno"
+                        name="horaTurno" 
+                        value={persona.horaTurno}  
+                        onChange={handleInputChange} 
+                        required
+                    />
+                </div>
                 <div className="mb-4">
                     <select
                         className="shadow appearance-none border rounded w-full py-2 px-3 text-black-900 leading-tight focus:outline-none focus:shadow-outline"
@@ -95,13 +108,13 @@ function Carga() {
 
                     </select>
                 </div>
-
+                
                 <button
                     onClick={handleSubmit}
                     className="bg-green-600 hover:bg-green-400 text-black font-black border border-black py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit" 
                 >
-                    cargar
+                    Cargar
                 </button>
             </form>
         </div>

@@ -6,13 +6,12 @@ function VerDisponibles({ turnos }) {
     const [selectedPuesto, setSelectedPuesto] = useState("");
 
     const llamar = () => {
-        // Luego, agrega datos a Firestore
         const llamadoCollection = collection(db, "llamados");
         const llamado = {
-        nombre: turnos.datos.nombre,
-        apellido: turnos.datos.apellido,
-        puesto: selectedPuesto,
-        timestamp: serverTimestamp(),
+            nombre: turnos.datos.nombre,
+            apellido: turnos.datos.apellido,
+            puesto: selectedPuesto,
+            timestamp: serverTimestamp(),
         };
 
         addDoc(llamadoCollection, llamado)
@@ -26,32 +25,36 @@ function VerDisponibles({ turnos }) {
 
     const eliminarTurno = async () => {
         try {
-        const turnoDocRef = doc(db, "turnos", turnos.id);
-        await deleteDoc(turnoDocRef);
-        console.log("Turno eliminado correctamente.");
-        // Recarga la página después de eliminar
-        window.location.reload();
+            const turnoDocRef = doc(db, "turnos", turnos.id);
+            await deleteDoc(turnoDocRef);
+            console.log("Turno eliminado correctamente.");
+            window.location.reload();
         } catch (error) {
-        console.error("Error al eliminar el turno:", error);
+            console.error("Error al eliminar el turno:", error);
         }
     };
 
     const handlePuestoChange = (event) => {
         setSelectedPuesto(event.target.value);
     };
-    
+
     return (
         <section>
             <div key={turnos.id} className="grid  md:grid-cols-1 border border-black card shadow-xl p-4 rounded-md bg-gray-200">
                 <div className="flex justify-center">
                     <h2 className=" text-start font-black uppercase m-3 text-lg">
-                    {turnos.datos.apellido}
+                        {turnos.datos.apellido}
                     </h2>
-                    <h2 className=" text-start font-black uppercase m-3 text-lg">{turnos.datos.nombre}</h2>
+                    <h2 className=" text-start font-black uppercase m-3 text-lg">
+                        {turnos.datos.nombre}
+                    </h2>
                 </div>
-                <p className=" font-semibold">{turnos.datos.tramite}</p>
+                <div className="flex justify-center space-x-6">
+                    <p className=" font-semibold">Hora: {turnos.datos.horaTurno}</p>
+                    <p className=" font-semibold">{turnos.datos.tramite}</p>
+                </div>
                 <select onChange={handlePuestoChange}>
-                    <option value="select">elige lugar</option>
+                    <option value="select">Elige lugar</option>
                     <option value="Puesto 1">Puesto 1</option>
                     <option value="Puesto 2">Puesto 2</option>
                     <option value="Puesto 3">Puesto 3</option>
@@ -65,7 +68,7 @@ function VerDisponibles({ turnos }) {
                 </button>
             </div>
         </section>
-        );
+    );
 }
 
 export default VerDisponibles;

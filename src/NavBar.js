@@ -2,6 +2,7 @@ import { NavLink,Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ContextTurnero } from "./ContextTurnero";
 import menu from './menu.png'
+import logo from './logoCpc.png'
 function NavBar() {
     const { usuario, updateUsuario } = useContext(ContextTurnero);
     const [desplegar,setDesplegar] = useState(false)
@@ -16,11 +17,11 @@ function NavBar() {
     };
 
     return (
-        <div className="flex justify-around font-bold nav">
+        <div className="flex justify-start font-bold nav">
             <NavLink to={"/"}>
                 <img
-                className="logo"
-                src={"https://cordoba.gob.ar/wp-content/uploads/2023/12/Logo-blanco-e1702566943562.png"}
+                className="logo mx-10"
+                src={logo}
                 alt="logo municipalidad"
                 />
             </NavLink>
